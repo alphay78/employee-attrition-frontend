@@ -1,5 +1,5 @@
 // 🔴 CHANGE THIS TO YOUR RENDER BACKEND URL
-const API_BASE_URL = "https://employee-attrition-backend.onrender.com";
+const API_BASE_URL = "https://employee-attrition-backend.onrender.com/docs";
 
 const Age = document.getElementById("Age");
 const MonthlyIncome = document.getElementById("MonthlyIncome");
