@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Attrition Predictor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>📊 Employee Attrition Predictor</h1>
+    <p class="subtitle">Predict employee attrition using ML models</p>
+
+    <div class="card">
+      <form id="predictionForm">
+        <div class="grid">
+
+          <input type="number" placeholder="Age" id="Age" required>
+          <input type="number" placeholder="Monthly Income" id="MonthlyIncome" required>
+          <input type="number" placeholder="Job Level" id="JobLevel" required>
+          <input type="number" placeholder="Job Satisfaction (1-4)" id="JobSatisfaction" required>
+          <input type="number" placeholder="Years At Company" id="YearsAtCompany" required>
+
+          <select id="OverTime">
+            <option value="Yes">OverTime: Yes</option>
+            <option value="No">OverTime: No</option>
+          </select>
+
+          <select id="Department">
+            <option value="Sales">Sales</option>
+            <option value="Research & Development">R&D</option>
+            <option value="Human Resources">HR</option>
+          </select>
+
+          <select id="EducationField">
+            <option value="Life Sciences">Life Sciences</option>
+            <option value="Medical">Medical</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Technical Degree">Technical</option>
+            <option value="Other">Other</option>
+          </select>
+
+        </div>
+
+        <div class="buttons">
+          <button type="button" onclick="predict('logistic')">Logistic Regression</button>
+          <button type="button" onclick="predict('decision-tree')" class="secondary">
+            Decision Tree
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="result" class="result hidden"></div>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
