@@ -1,4 +1,4 @@
-// 🔴 CHANGE THIS TO YOUR RENDER BACKEND URL
+// ✅ Render backend base URL (NO trailing slash)
 const API_BASE_URL = "https://employee-attrition-backend-2.onrender.com";
 
 const Age = document.getElementById("Age");
@@ -13,19 +13,22 @@ const result = document.getElementById("result");
 
 async function predict(model) {
   const payload = {
-    Age: Number(Age.value),
-    MonthlyIncome: Number(MonthlyIncome.value),
-    JobLevel: Number(JobLevel.value),
-    JobSatisfaction: Number(JobSatisfaction.value),
-    YearsAtCompany: Number(YearsAtCompany.value),
-    OverTime: OverTime.value,
-    Department: Department.value,
-    EducationField: EducationField.value,
+    age: Number(Age.value),
+    monthly_income: Number(MonthlyIncome.value),
+    job_level: Number(JobLevel.value),
+    job_satisfaction: Number(JobSatisfaction.value),
+    years_at_company: Number(YearsAtCompany.value),
+    overtime: OverTime.value,
+    department: Department.value,
+    education_field: EducationField.value,
   };
 
   const endpoint = `${API_BASE_URL}/predict/${model}`;
 
   try {
+    result.classList.remove("hidden");
+    result.innerHTML = "<p>⏳ Predicting...</p>";
+
     const res = await fetch(endpoint, {
       method: "POST",
       headers: {
@@ -50,10 +53,13 @@ async function predict(model) {
       <p><strong>Attrition Risk:</strong> ${risk}</p>
       <p><strong>Probability:</strong> ${probability}%</p>
     `;
-
-    result.classList.remove("hidden");
   } catch (error) {
-    console.error(error);
-    alert("Prediction failed. Check backend connection.");
+    console.error("Prediction error:", error);
+    result.innerHTML = `
+      <p style="color:red;">
+        ❌ Prediction failed.<br/>
+        ${error.message}
+      </p>
+    `;
   }
 }
