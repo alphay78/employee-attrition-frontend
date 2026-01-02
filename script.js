@@ -45,7 +45,7 @@ async function predict(model) {
     const data = await res.json();
 
     const risk = data.attrition_prediction === 1 ? "HIGH" : "LOW";
-    const probability = (data.probability * 100).toFixed(2);
+    const probability = (data.confidence * 100).toFixed(2);
 
     result.innerHTML = `
       <h3>Prediction Result</h3>
